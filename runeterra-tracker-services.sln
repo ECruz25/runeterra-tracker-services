@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "runeterra-tracker-services", "runeterra-tracker-services\runeterra-tracker-services.csproj", "{BEAF58CF-6F54-4AD8-BB7A-03758D5E68DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "runeterra-tracker-services", "runeterra-tracker-services\runeterra-tracker-services.csproj", "{BEAF58CF-6F54-4AD8-BB7A-03758D5E68DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "runeterra-tracker-services-test", "runeterra-tracker-services-test\runeterra-tracker-services-test.csproj", "{2E48230B-E86B-4976-A429-C75FFD07B110}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BEAF58CF-6F54-4AD8-BB7A-03758D5E68DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEAF58CF-6F54-4AD8-BB7A-03758D5E68DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEAF58CF-6F54-4AD8-BB7A-03758D5E68DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E48230B-E86B-4976-A429-C75FFD07B110}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E48230B-E86B-4976-A429-C75FFD07B110}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E48230B-E86B-4976-A429-C75FFD07B110}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E48230B-E86B-4976-A429-C75FFD07B110}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
