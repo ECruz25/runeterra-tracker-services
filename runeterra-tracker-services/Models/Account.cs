@@ -19,5 +19,10 @@ namespace runeterra_tracker_services.Models
         public DateTime? Lastlogin { get; set; }
 
         public virtual ICollection<Match> Match { get; set; }
+
+        public void AddMatch(Match match)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
