@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using runeterra_tracker_services.Models;
+using runeterra_tracker_services.Services;
 
 namespace runeterra_tracker_services.Controllers
 {
@@ -11,27 +13,30 @@ namespace runeterra_tracker_services.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        qzdwlleeContext context = new qzdwlleeContext();
+        private static readonly qzdwlleeContext _context = new qzdwlleeContext(); 
+        private readonly AccountService _services = new AccountService(_context);
         // GET: api/<AccountController>
         [HttpGet]
-        public List<Account> Get()
+        public async Task<List<Account>> Get()
         {
-            var response = context.Account.ToList();
+            List<Account> response = await _context.Account.ToListAsync();
             return response;
         }
 
         // GET api/<AccountController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<Account> Get(int id)
         {
-            return "value";
+            Account response = await _context.Account.FirstOrDefaultAsync(acc => acc.Accountid == id);
+            return response;
         }
 
         // POST api/<AccountController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody]AccountRegisterRequest request)
         {
-
+            Account response = await _services.Register(request);
+            return Ok(response);
         }
 
         // PUT api/<AccountController>/5

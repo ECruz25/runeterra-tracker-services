@@ -1,4 +1,5 @@
-﻿using System;
+﻿using runeterra_tracker_services.Services;
+using System;
 using System.Collections.Generic;
 
 namespace runeterra_tracker_services.Models
@@ -7,6 +8,14 @@ namespace runeterra_tracker_services.Models
     {
         public Account()
         {
+        }
+
+        public Account(AccountRegisterRequest request)
+        {
+            Name = request.Name;
+            Username = request.Username;
+            Email = request.Email;
+            Createdon = DateTime.Now;
             Match = new HashSet<Match>();
         }
 
