@@ -31,6 +31,14 @@ namespace runeterra_tracker_services.Controllers
             return response;
         }
 
+        [HttpGet("Winrate/{id}")]
+        public async Task<double> GetWinrate(int account)
+        {
+            Account response = await _context.Account.FirstOrDefaultAsync(acc => acc.Accountid == account);
+            double winrate = response.WinRate();
+            return winrate;
+        }
+
         // POST api/<AccountController>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]AccountRegisterRequest request)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using runeterra_tracker_services.Models;
 using runeterra_tracker_services.Services;
 
@@ -16,11 +17,12 @@ namespace runeterra_tracker_services.Controllers
     {
         private static readonly qzdwlleeContext _context = new qzdwlleeContext();
         private readonly MatchService _services = new MatchService(_context);
+
         // GET api/<MatchController>/5
-        [HttpGet("{id}")]
-        public List<Match> Get(int request)
+        [HttpGet]
+        public async Task<List<Match>> Get(int request)
         {
-            List<Match> response = _services.MatcheshByAccount(request);
+            List<Match> response = await _services.MatcheshByAccount(request);
             return response;
         }
 
