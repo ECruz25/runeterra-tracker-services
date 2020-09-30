@@ -39,6 +39,14 @@ namespace runeterra_tracker_services.Controllers
             return Ok(response);
         }
 
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> Login([FromBody]AccountAuthenticationRequest request)
+        {
+            Account response = await _services.Authenticate(request);
+            return Ok(response);
+        }
+
         // PUT api/<AccountController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)

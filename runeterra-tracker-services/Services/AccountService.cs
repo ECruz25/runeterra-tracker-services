@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BC = BCrypt.Net.BCrypt;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace runeterra_tracker_services.Services
 {
@@ -18,9 +19,14 @@ namespace runeterra_tracker_services.Services
             _context = context;
         }
 
-        public void Authenticate(AccountAuthenticationRequest request)
+        public async Task<Account> Authenticate(AccountAuthenticationRequest request)
         {
-            throw new NotImplementedException();
+            Account requestedAccount = await _context.Account.SingleOrDefaultAsync(acc => acc.Email.ToUpper() == request.Email.ToUpper());
+            if (requestedAccount == null || !BC.Verify(request.Password, requestedAccount.Password))
+            {
+                return null;
+            }
+            return requestedAccount;
         }
 
         public async Task<Account> Register(AccountRegisterRequest request)
