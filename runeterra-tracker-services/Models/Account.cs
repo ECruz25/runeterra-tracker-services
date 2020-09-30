@@ -8,6 +8,7 @@ namespace runeterra_tracker_services.Models
     {
         public Account()
         {
+            Match = new HashSet<Match>();
         }
 
         public Account(AccountRegisterRequest request)

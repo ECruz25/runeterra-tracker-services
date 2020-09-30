@@ -24,7 +24,7 @@ namespace runeterra_tracker_services.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseNpgsql("Host=lallah.db.elephantsql.com;Port=5432;Database=qzdwllee;Username=qzdwllee;Password=6iyWzxyCgYetrK9SFJSy15I4z0MuECBs");
+                optionsBuilder.UseNpgsql("Host=lallah.db.elephantsql.com;Database=qzdwllee;Username=qzdwllee;Password=6iyWzxyCgYetrK9SFJSy15I4z0MuECBs;Port=5432");
             }
         }
 
