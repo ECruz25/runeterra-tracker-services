@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using runeterra_tracker_services.Models;
@@ -13,7 +14,7 @@ namespace runeterra_tracker_services.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private static readonly qzdwlleeContext _context = new qzdwlleeContext(); 
+        private static readonly qzdwlleeContext _context = new qzdwlleeContext();
         private readonly AccountService _services = new AccountService(_context);
         // GET: api/<AccountController>
         [HttpGet]
@@ -41,7 +42,7 @@ namespace runeterra_tracker_services.Controllers
 
         // POST api/<AccountController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]AccountRegisterRequest request)
+        public async Task<IActionResult> Post([FromBody] AccountRegisterRequest request)
         {
             Account response = await _services.Register(request);
             return Ok(response);
@@ -49,9 +50,13 @@ namespace runeterra_tracker_services.Controllers
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login([FromBody]AccountAuthenticationRequest request)
+        public async Task<IActionResult> Login([FromBody] AccountAuthenticationRequest request)
         {
             Account response = await _services.Authenticate(request);
+            if (response == null)
+            {
+                return Ok(new { Message = "Failed to authenticate", Title="Authentication Error" });
+            }
             return Ok(response);
         }
 
