@@ -1,6 +1,7 @@
 ﻿using runeterra_tracker_services.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace runeterra_tracker_services.Models
 {
@@ -32,7 +33,19 @@ namespace runeterra_tracker_services.Models
 
         public void AddMatch(Match match)
         {
-            throw new NotImplementedException();
+            Match.Add(match);
+        }
+
+        public double WinRate()
+        {
+            double totalMatches = Match.Count;
+            if (totalMatches == 0)
+            {
+                return 0;
+            }
+            double wins = Match.Where(m => m.Result == "WIN").Count();
+            double result = (double)wins / totalMatches;
+            return result;
         }
     }
 }
