@@ -16,10 +16,29 @@ namespace runeterra_tracker_services.Services
         {
             _context = context;
         }
-        public List<Match> MatchesshByAccount(MatchesByAccountRequest request)
+        public List<Match> MatcheshByAccount(int id)
         {
-            List<Match> matches = _context.Match.Where(m => m.Accountid == request.Id).ToList();
+            List<Match> matches = _context.Match.Where(m => m.Accountid == id).ToList();
             return matches;
+        }
+
+        public async void CreateMatch(CreateMatchRequest request)
+        {
+            Account accountToCreate = await _context.Account.FirstOrDefaultAsync(t => t.Accountid == request.AccountId);
+            if (accountToCreate == null)
+            {
+                return;
+            }
+            Match match = new Match()
+            {
+                Account = accountToCreate,
+                Accountid = request.AccountId,
+                Date = DateTime.Now,
+                Deckid = request.DeckId,
+                Result = request.Result
+            };
+            await _context.Match.AddAsync(match);
+            await _context.SaveChangesAsync();
         }
     }
 }

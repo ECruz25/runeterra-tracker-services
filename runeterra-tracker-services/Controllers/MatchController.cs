@@ -18,28 +18,17 @@ namespace runeterra_tracker_services.Controllers
         private readonly MatchService _services = new MatchService(_context);
         // GET api/<MatchController>/5
         [HttpGet("{id}")]
-        public List<Match> Get(MatchesByAccountRequest request)
+        public List<Match> Get(int request)
         {
-            List<Match> response = _services.MatchesshByAccount(request);
+            List<Match> response = _services.MatcheshByAccount(request);
             return response;
         }
 
         // POST api/<MatchController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] CreateMatchRequest request)
         {
-        }
-
-        // PUT api/<MatchController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<MatchController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            _services.CreateMatch(request);
         }
     }
 }

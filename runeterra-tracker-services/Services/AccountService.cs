@@ -26,7 +26,13 @@ namespace runeterra_tracker_services.Services
             {
                 return null;
             }
-            return requestedAccount;
+            Account response = new Account
+            {
+                Accountid = requestedAccount.Accountid,
+                Name = requestedAccount.Name,
+                Username = requestedAccount.Username
+            };
+            return response;
         }
 
         public async Task<Account> Register(AccountRegisterRequest request)

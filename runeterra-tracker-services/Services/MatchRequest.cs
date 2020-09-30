@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 
 namespace runeterra_tracker_services.Services
 {
-    public class MatchesByAccountRequest
+    public class CreateMatchRequest
     {
-        public int Id { get; set; }
+        public int AccountId { get; set; }
+        public string DeckId { get; set; }
+        public string Result { get; set; }
     }
 
     public class MatchByIdRequest
